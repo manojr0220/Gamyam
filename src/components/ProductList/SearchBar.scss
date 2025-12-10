@@ -1,0 +1,58 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.search-bar {
+  position: relative;
+  flex: 1;
+  max-width: 500px;
+
+  @include mobile {
+    max-width: 100%;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $gray-400;
+    pointer-events: none;
+  }
+
+  .search-input {
+    @include input-base;
+    padding-left: calc(#{$spacing-md} + 20px + #{$spacing-sm});
+    padding-right: calc(#{$spacing-md} + 20px + #{$spacing-sm});
+
+    &::placeholder {
+      color: $gray-400;
+    }
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: $gray-400;
+    cursor: pointer;
+    padding: $spacing-xs;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $border-radius-full;
+    transition: all $transition-base;
+
+    &:hover {
+      background: $gray-100;
+      color: $gray-600;
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

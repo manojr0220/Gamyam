@@ -1,0 +1,87 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.product-form {
+  @include flex-column;
+  gap: $spacing-lg;
+
+  .form-group {
+    @include flex-column;
+    gap: $spacing-xs;
+
+    label {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      color: $gray-700;
+
+      &.required::after {
+        content: ' *';
+        color: $danger-color;
+      }
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      @include input-base;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+      font-family: $font-family-base;
+    }
+
+    .char-count {
+      font-size: $font-size-xs;
+      color: $gray-500;
+      text-align: right;
+    }
+
+    .error-message {
+      font-size: $font-size-sm;
+      color: $danger-color;
+      margin-top: $spacing-xs;
+    }
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-md;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: $spacing-md;
+    justify-content: flex-end;
+    padding-top: $spacing-md;
+    border-top: 1px solid $gray-200;
+
+    @include mobile {
+      flex-direction: column-reverse;
+    }
+
+    .btn-cancel {
+      @include button-secondary;
+      padding: $spacing-sm $spacing-xl;
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+
+    .btn-submit {
+      @include button-primary;
+      padding: $spacing-sm $spacing-xl;
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+  }
+}

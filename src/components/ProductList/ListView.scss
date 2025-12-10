@@ -1,0 +1,153 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.list-view {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: $white;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-base;
+
+  thead {
+    background: $gray-50;
+    
+    tr {
+      th {
+        padding: $spacing-md $spacing-lg;
+        text-align: left;
+        font-weight: $font-weight-semibold;
+        color: $gray-700;
+        font-size: $font-size-sm;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-bottom: 2px solid $gray-200;
+
+        @include mobile {
+          display: none;
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $gray-200;
+      transition: background-color $transition-base;
+
+      &:hover {
+        background: $gray-50;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      @include mobile {
+        display: block;
+        margin-bottom: $spacing-md;
+        border: 1px solid $gray-200;
+        border-radius: $border-radius-base;
+        padding: $spacing-md;
+        
+        &:hover {
+          background: $white;
+          box-shadow: $shadow-md;
+        }
+      }
+
+      td {
+        padding: $spacing-md $spacing-lg;
+        color: $gray-900;
+        font-size: $font-size-base;
+
+        @include mobile {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: $spacing-sm 0;
+          border: none;
+
+          &::before {
+            content: attr(data-label);
+            font-weight: $font-weight-semibold;
+            color: $gray-600;
+            font-size: $font-size-sm;
+          }
+
+          &:first-child {
+            padding-top: 0;
+          }
+
+          &:last-child {
+            padding-bottom: 0;
+          }
+        }
+
+        .product-name {
+          @include flex-column;
+          gap: $spacing-xs;
+
+          .name {
+            font-weight: $font-weight-medium;
+            color: $gray-900;
+          }
+
+          .description {
+            font-size: $font-size-sm;
+            color: $gray-600;
+            @include line-clamp(2);
+
+            @include mobile {
+              display: none;
+            }
+          }
+        }
+
+        .price {
+          font-weight: $font-weight-semibold;
+          color: $primary-color;
+        }
+
+        .category-badge {
+          display: inline-block;
+          padding: $spacing-xs $spacing-sm;
+          background: $primary-light;
+          color: $primary-color;
+          border-radius: $border-radius-full;
+          font-size: $font-size-sm;
+          font-weight: $font-weight-medium;
+        }
+
+        .stock {
+          &.low-stock {
+            color: $warning-color;
+            font-weight: $font-weight-medium;
+          }
+
+          &.out-of-stock {
+            color: $danger-color;
+            font-weight: $font-weight-semibold;
+          }
+        }
+
+        .btn-edit {
+          @include button-base;
+          background: $primary-color;
+          color: $white;
+          padding: $spacing-xs $spacing-md;
+          font-size: $font-size-sm;
+
+          &:hover:not(:disabled) {
+            background: $primary-hover;
+          }
+        }
+      }
+    }
+  }
+}

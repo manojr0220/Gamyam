@@ -1,0 +1,129 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.pagination {
+  @include flex-column;
+  gap: $spacing-lg;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $gray-200;
+
+  @include tablet-and-up {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pagination-info {
+    @include flex-between;
+    gap: $spacing-lg;
+    flex-wrap: wrap;
+    font-size: $font-size-sm;
+    color: $gray-600;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-sm;
+    }
+
+    .items-per-page {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+
+      label {
+        font-weight: $font-weight-medium;
+      }
+
+      select {
+        padding: $spacing-xs $spacing-sm;
+        border: 1px solid $gray-300;
+        border-radius: $border-radius-base;
+        background: $white;
+        cursor: pointer;
+        font-size: $font-size-sm;
+        transition: border-color $transition-base;
+
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+        }
+      }
+    }
+  }
+
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    @include mobile {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .page-btn {
+      @include flex-center;
+      min-width: 36px;
+      height: 36px;
+      padding: $spacing-xs $spacing-sm;
+      background: $white;
+      border: 1px solid $gray-300;
+      border-radius: $border-radius-base;
+      color: $gray-700;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      cursor: pointer;
+      transition: all $transition-base;
+
+      &:hover:not(:disabled):not(.ellipsis) {
+        background: $gray-50;
+        border-color: $primary-color;
+        color: $primary-color;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      &.active {
+        background: $primary-color;
+        border-color: $primary-color;
+        color: $white;
+      }
+
+      &.ellipsis {
+        border: none;
+        cursor: default;
+        
+        &:hover {
+          background: transparent;
+        }
+      }
+
+      &.prev-btn,
+      &.next-btn {
+        gap: $spacing-xs;
+        padding: $spacing-xs $spacing-md;
+
+        .btn-text {
+          @include mobile {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .page-numbers {
+      display: flex;
+      gap: $spacing-xs;
+
+      @include mobile {
+        .page-btn:not(.active):not(.ellipsis) {
+          display: none;
+        }
+      }
+    }
+  }
+}

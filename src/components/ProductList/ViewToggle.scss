@@ -1,0 +1,46 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.view-toggle {
+  display: flex;
+  gap: 0;
+  background: $gray-100;
+  border-radius: $border-radius-base;
+  padding: $spacing-xs;
+
+  .toggle-btn {
+    @include flex-center;
+    gap: $spacing-xs;
+    padding: $spacing-sm $spacing-md;
+    background: transparent;
+    border: none;
+    border-radius: $border-radius-sm;
+    color: $gray-600;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all $transition-base;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    span {
+      @include mobile {
+        display: none;
+      }
+    }
+
+    &:hover:not(.active) {
+      background: $gray-200;
+      color: $gray-700;
+    }
+
+    &.active {
+      background: $white;
+      color: $primary-color;
+      box-shadow: $shadow-sm;
+    }
+  }
+}
